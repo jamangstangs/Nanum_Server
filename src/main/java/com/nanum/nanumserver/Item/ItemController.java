@@ -1,5 +1,6 @@
 package com.nanum.nanumserver.Item;
 
+import com.nanum.nanumserver.Item.dto.request.ItemRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
