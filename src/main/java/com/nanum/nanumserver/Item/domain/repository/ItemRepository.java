@@ -1,4 +1,4 @@
-package com.nanum.nanumserver.Item;
+package com.nanum.nanumserver.Item.domain.repository;
 
 import com.nanum.nanumserver.Item.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Long> {
-    Optional<Item> findByItemId(Long itemId);
+    Optional<Item> findById(Long id);
 }
