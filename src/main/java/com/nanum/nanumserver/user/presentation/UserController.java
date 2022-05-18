@@ -5,6 +5,7 @@ import com.nanum.nanumserver.user.application.UserService;
 import com.nanum.nanumserver.user.domain.SimpleUser;
 import com.nanum.nanumserver.user.dto.request.SignInRequest;
 import com.nanum.nanumserver.user.dto.request.SignUpRequest;
+import com.nanum.nanumserver.user.dto.request.UpdatePasswordByVerificationRequest;
 import com.nanum.nanumserver.user.dto.request.UpdatePasswordRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,4 +38,8 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/users/reset-password")
+    public ResponseEntity<Void> updatePasswordByVerification(@Validated @RequestBody UpdatePasswordByVerificationRequest request) {
+        UserService
+    }
 }
