@@ -2,9 +2,11 @@ package com.nanum.nanumserver.user.application;
 
 import com.nanum.nanumserver.IntegrityTest;
 import com.nanum.nanumserver.exception.user.DuplicatedUserException;
+import com.nanum.nanumserver.exception.user.InvalidEmailFormException;
 import com.nanum.nanumserver.user.domain.User;
 import com.nanum.nanumserver.user.domain.UserRepository;
 import com.nanum.nanumserver.user.dto.request.SignUpRequest;
+import com.nanum.nanumserver.user.dto.request.UpdatePasswordByVerificationRequest;
 import com.nanum.nanumserver.utils.password.Encoder;
 import com.nanum.nanumserver.verification.application.password.FindPasswordValidator;
 import com.nanum.nanumserver.verification.application.signup.SignUpValidator;
@@ -61,5 +63,25 @@ class UserServiceTest extends IntegrityTest {
         userRepository.save(new User(GIST_EMAIL, PASSWORD));
 
         assertThatThrownBy(() -> userService.signUp(DEFAULT_SIGN_UP_REQUEST)).isInstanceOf(DuplicatedUserException.class);
+    }
+
+    @Test
+    void signUpFailedIfNotValidEmailForm() {
+        String notGistEmail = "email@email.com";
+        SignUpRequest signUpRequest = new SignUpRequest(notGistEmail, PASSWORD, VERIFICATION_CODE);
+
+        assertThatThrownBy(() -> userService.signUp(signUpRequest)).isInstanceOf(InvalidEmailFormException.class);
+
+    }
+
+    @Test
+    void updateUserPasswordByVerification() {
+        Long userId = userService.signUp(DEFAULT_SIGN_UP_REQUEST);
+        String newPassword = "new" + PASSWORD;
+        UpdatePasswordByVerificationRequest passwordRequest = new UpdatePasswordByVerificationRequest(GIST_EMAIL, newPassword, VERIFICATION_CODE);
+        userService.updatePasswordByVerificationCode(passwordRequest);
+
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+        assertThat(encoder.isMatch(passwordRequest.getPassword(), user.getPassword()));
     }
 }

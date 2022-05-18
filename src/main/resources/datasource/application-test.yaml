@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://nanum.cpxdtjizjqdd.us-east-1.rds.amazonaws.com/nanum?serverTimezone=Asia/Seoul
+    username: admin
+    password: nanum7777
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
