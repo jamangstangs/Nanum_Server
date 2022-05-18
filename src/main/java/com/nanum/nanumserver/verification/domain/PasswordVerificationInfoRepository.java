@@ -1,10 +1,12 @@
 package com.nanum.nanumserver.verification.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface PasswordVerificationInfoRepository extends JpaRepository<PasswordVerificationInfo, Long> {
     Optional<PasswordVerificationInfo> findByVerificationCode(String verificationCode);
 

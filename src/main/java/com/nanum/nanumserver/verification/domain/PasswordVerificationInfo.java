@@ -1,7 +1,9 @@
 package com.nanum.nanumserver.verification.domain;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+@Entity
 public class PasswordVerificationInfo extends VerificationInfo {
     public PasswordVerificationInfo() {
     }

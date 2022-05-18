@@ -31,7 +31,7 @@ public class UserService {
     // 회원가입 가입 서비스
     @Transactional
     @DataIntegrityHandler(DuplicatedUserException.class)
-    public Long signUP(SignUpRequest request) {
+    public Long signUp(SignUpRequest request) {
         String username = request.getUsername();
         String verificationCode = request.getVerificationCode();
 
