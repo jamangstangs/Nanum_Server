@@ -40,6 +40,9 @@ public class UserController {
 
     @PutMapping("/users/reset-password")
     public ResponseEntity<Void> updatePasswordByVerification(@Validated @RequestBody UpdatePasswordByVerificationRequest request) {
-        UserService
+        userService.updatePasswordByVerificationCode(request);
+        return ResponseEntity.noContent().build();
     }
+
+
 }
