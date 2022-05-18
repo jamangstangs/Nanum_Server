@@ -1,5 +1,6 @@
-package com.nanum.nanumserver.Item;
+package com.nanum.nanumserver.Item.application;
 
+import com.nanum.nanumserver.Item.domain.Item;
 import com.nanum.nanumserver.Item.domain.repository.ItemRepository;
 import com.nanum.nanumserver.Item.dto.request.ItemRequest;
 import com.nanum.nanumserver.Item.dto.request.LikeRequest;
@@ -19,7 +20,7 @@ public class ItemService {
     }
 
     public Long putItem(ItemRequest itemRequest){
-        Item item = itemRepository.save(new Item(itemRequest.getName(), itemRequest.getUrl(), itemRequest.getDescription(), itemRequest.getProviderId()));
+        Item item = itemRepository.save(new Item(itemRequest.getName(), itemRequest.getUrl(), itemRequest.getProviderId(), itemRequest.getDescription()));
         return item.getId();
     }
 

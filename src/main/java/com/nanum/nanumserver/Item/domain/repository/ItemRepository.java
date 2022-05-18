@@ -1,6 +1,6 @@
 package com.nanum.nanumserver.Item.domain.repository;
 
-import com.nanum.nanumserver.Item.Item;
+import com.nanum.nanumserver.Item.domain.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
