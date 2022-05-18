@@ -3,14 +3,14 @@ package com.nanum.nanumserver.Item.dto.request;
 import lombok.Getter;
 
 @Getter
-public class LikeRequest {
+public class WishRequest {
     private Long itemId;
     private Long wisherId;
 
-    public LikeRequest() {
+    public WishRequest() {
     }
 
-    public LikeRequest(Long itemId, Long wisherId) {
+    public WishRequest(Long itemId, Long wisherId) {
         this.itemId = itemId;
         this.wisherId = wisherId;
     }

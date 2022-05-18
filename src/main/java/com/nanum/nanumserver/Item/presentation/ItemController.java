@@ -1,5 +1,7 @@
-package com.nanum.nanumserver.Item;
+package com.nanum.nanumserver.Item.presentation;
 
+import com.nanum.nanumserver.Item.domain.Item;
+import com.nanum.nanumserver.Item.application.ItemService;
 import com.nanum.nanumserver.Item.dto.request.ItemRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,4 +25,5 @@ public class ItemController {
         itemService.putItem(itemRequest);
         return ResponseEntity.noContent().build();
     }
+
 }
