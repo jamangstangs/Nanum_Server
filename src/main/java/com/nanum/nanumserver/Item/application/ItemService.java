@@ -1,9 +1,11 @@
 package com.nanum.nanumserver.Item.application;
 
 import com.nanum.nanumserver.Item.domain.Item;
+import com.nanum.nanumserver.Item.domain.Wisher;
 import com.nanum.nanumserver.Item.domain.repository.ItemRepository;
 import com.nanum.nanumserver.Item.dto.request.ItemRequest;
-import com.nanum.nanumserver.Item.dto.request.LikeRequest;
+import com.nanum.nanumserver.Item.dto.request.WishRequest;
+import com.nanum.nanumserver.exception.item.NoSuchItemException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +26,15 @@ public class ItemService {
         return item.getId();
     }
 
-    public Long likeItem(LikeRequest likeRequest) {
-        Long itemId = likeRequest.getItemId();
-        Optional<Item> item = itemRepository.findById(itemId);
-//        item.wishers
-        return 0L;
+    public void wish(WishRequest wishRequest) {
+        Long itemId = wishRequest.getItemId();
+        Item item = fineItemByItemId(itemId);
+        item.wish(new Wisher(wishRequest.getWisherId()));
     }
+
+    private Item fineItemByItemId(Long itemId) {
+        return itemRepository.findById(itemId).orElseThrow(NoSuchItemException::new);
+    }
+
 
 }

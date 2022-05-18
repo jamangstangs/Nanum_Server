@@ -14,7 +14,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 public class Item extends BaseEntity {
 
@@ -38,8 +37,8 @@ public class Item extends BaseEntity {
         this.description = description;
     }
 
-    public void wish(Long userId) {
-        this.wishers.add(new Wisher(providerId));
+    public void wish(Wisher wisher) {
+        this.wishers.add(wisher);
     }
     
     public int getWishCount() {
