@@ -4,6 +4,7 @@ import com.nanum.nanumserver.common.persistence.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 public class User extends BaseEntity {

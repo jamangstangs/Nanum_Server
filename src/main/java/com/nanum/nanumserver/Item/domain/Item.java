@@ -1,12 +1,8 @@
 package com.nanum.nanumserver.Item.domain;
 
 import com.nanum.nanumserver.common.persistence.BaseEntity;
-import com.nanum.nanumserver.user.domain.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.OptimisticLock;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,11 +17,8 @@ public class Item extends BaseEntity {
     private String url;
     private Long providerId;
     private String description;
-    @Embedded
-    @OptimisticLock(excluded = true)
-    private final Wishers wishers = new Wishers();
-    @Version
-    private Long version;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private final List<Wish> wishes = new ArrayList<>();
 
     public Item() {
     }
@@ -37,14 +30,11 @@ public class Item extends BaseEntity {
         this.description = description;
     }
 
-    public void wish(Wisher wisher) {
-        this.wishers.add(wisher);
+    public void wish(Long userId) {
+        this.wishes.add(new Wish(userId, this));
     }
-    
+
     public int getWishCount() {
-        return wishers.size();
+        return wishes.size();
     }
-
-
-
 }
